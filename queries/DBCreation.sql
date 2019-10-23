@@ -12,10 +12,10 @@ tutor_id integer);
 
 CREATE TABLE usuario(
 id_usuario serial primary key,
-id_persona integer foreign key,
+id_persona integer references (id_persona),
 usuario text,
 password varchar(12),
-tipo_usuario integer);
+tipo_usuario text);
 
 CREATE TABLE numero(
 id_numero serial primary key,
@@ -42,7 +42,7 @@ actividad_laboral text);
 
 CREATE TABLE premios(
 id_premios serial primary key,
-id_art integer references artista(id_artista),
+id_art integer references artista(id_art),
 nombre_premio varchar(40),
 descripcion text,
 fecha_premiacion date);
@@ -50,8 +50,8 @@ fecha_premiacion date);
 
 CREATE TABLE obras(
 id_obras serial primary key,
-id_art integer references artista(id_artista),
-id_categoria integer references categoria(id_categoria),
+id_art integer references artista(id_art),
+id_categorias integer references categorias(id_categorias),
 talento varchar(30),
 concepto text,
 contexto text,
@@ -59,7 +59,7 @@ referencia text);
 
 
 CREATE TABLE categorias(
-id_categoria serial primary key,
+id_categorias serial primary key,
 nombre varchar (40),
 descripcion text);
 
@@ -79,6 +79,6 @@ lugares_visitados text);
 
 CREATE TABLE art_evento(
 id_artev serial primary key,
-id_art integer references artista(id_artista),
+id_art integer references artista(id_art),
 id_eventos integer references eventos(id_eventos))
 

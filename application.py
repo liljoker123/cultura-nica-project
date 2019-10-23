@@ -23,8 +23,12 @@ db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/")
 def index():
-    ii = db.execute("select * from ejemplo")
-    return render_template("index.htm", ii = ii)
+    persona = db.execute("SELECT * FROM persona;")
+    return render_template("index.html", persona = persona)
+
+
+
+
 
 
 if __name__ == "__main__":
